@@ -13,19 +13,19 @@ public class CalculadoraClientHTTP {
 	public static void main(String[] args) {
 		
 	String result="";
-  System.out.println("Insira a operação:\n");
-			System.out.println("1. Soma \n 2. Subtracao \n 3. Multiplicacao \n 4. Divisao \n");
-			int op = sc.nextInt();
+        System.out.println("Insira a operação:\n");
+	System.out.println("1. Soma \n 2. Subtracao \n 3. Multiplicacao \n 4. Divisao \n");
+	int op = sc.nextInt();
 			
-			while (op<1 || op>4) {
-				System.out.println("Metodo invalido, insira novamente: \n");
-				op = sc.nextInt();
-			}
+	while (op<1 || op>4) {
+		System.out.println("Metodo invalido, insira novamente: \n");
+		op = sc.nextInt();
+	}
 			
-			System.out.println("Insira o primeiro inteiro:\n");
-			int a = sc.nextInt();
-			System.out.println("Insira o segundo inteiro:\n");
-			int b = sc.nextInt();
+	System.out.println("Insira o primeiro inteiro:\n");
+	int a = sc.nextInt();
+	System.out.println("Insira o segundo inteiro:\n");
+	int b = sc.nextInt();
       
     try {
 
