@@ -12,30 +12,30 @@ public class CalculadoraServerSocket {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ServerSocket welcomeSocket;
-		DataOutputStream socketOutput;     	
+	    ServerSocket welcomeSocket;
+	    DataOutputStream socketOutput;     	
 	    DataInputStream socketInput;
 	    BufferedReader socketEntrada;
 	    Calculadora calc = new Calculadora();
 		try {
 			welcomeSocket = new ServerSocket(9090);
-		  int i=0; //número de clientes
+		  int i=0; //nÃºmero de clientes
 	  
 	      System.out.println ("Servidor no ar");
 	      while(true) { 
 	  
 	           Socket connectionSocket = welcomeSocket.accept(); 
 	           i++;
-	           System.out.println ("Nova conexão");
+	           System.out.println ("Nova conexÃ£o");
 	           
 	           //Interpretando dados do servidor
-	           socketEntrada = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
+	       socketEntrada = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
                String operacao= socketEntrada.readLine();
                String oper1=socketEntrada.readLine();
                String oper2=socketEntrada.readLine();
                
                //Chamando a calculadora
-               String result= ""+calc.soma(Double.parseDouble(oper1),Double.parseDouble(oper2));
+               String result= ""+calc.calcular(Double.parseDouble(oper1),Double.parseDouble(oper2),Integer.parseInt(operacao));
                
                //Enviando dados para o servidor
                socketOutput= new DataOutputStream(connectionSocket.getOutputStream());     	
