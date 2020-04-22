@@ -14,6 +14,7 @@ public class CalculadoraClientHTTP {
 
 	public static void main(String[] args) {
 		
+	Scanner sc = new Scanner(System.in);		
 	String result="";
         System.out.println("Insira a operação:\n");
 	System.out.println("1. Soma \n 2. Subtracao \n 3. Multiplicacao \n 4. Divisao \n");
