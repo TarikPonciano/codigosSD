@@ -19,7 +19,7 @@ public class CalculadoraClientSocket {
 	int op = sc.nextInt();
 			
 	while (op<1 || op>4) {
-		System.out.println("Metodo invalido, insira novamente: \n");
+		System.out.println("Operacao invalida, insira novamente: \n");
 		op = sc.nextInt();
 	}
 			
