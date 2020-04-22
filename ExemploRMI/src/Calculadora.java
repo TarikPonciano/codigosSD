@@ -38,11 +38,11 @@ public class Calculadora  implements ICalculadora {
 		System.out.println("Total de chamadas: "+chamadas);
 		return a / b;
                      break;
-	    default: System.out.println("Operacao invalida")
+	    default: System.out.println("Operacao invalida");
 		     break;
 		
 	}
-
+	}
 	public static void main(String[] args) throws AccessException, RemoteException, AlreadyBoundException  {
 		Calculadora calculadora = new Calculadora();		
 		Registry reg = null;
