@@ -3,8 +3,6 @@ import java.rmi.RemoteException;
 
 public interface ICalculadora extends Remote{
 
-	public int soma(int a, int b) throws RemoteException;
-	public int sub(int a, int b) throws RemoteException;
-	public int mult(int a, int b) throws RemoteException;
-	public int div(int a, int b) throws RemoteException;
+	public int calcular(int a, int b, int op) throws RemoteException;
+
 }
