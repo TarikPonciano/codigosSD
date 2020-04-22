@@ -9,7 +9,8 @@ public class CalculadoraCliente {
 	public static void main(String[] args) {
 		
 		Registry reg = null;
-		ICalculadora calc;		
+		ICalculadora calc;	
+    Scanner sc = new Scanner(System.in);	
 		try {
 			reg = LocateRegistry.getRegistry(1099);
 			calc = (ICalculadora) reg.lookup("calculadora");
