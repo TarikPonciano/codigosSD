@@ -13,8 +13,34 @@ public class Calculadora  implements ICalculadora {
 	private static int chamadas = 0;
 
 	public int calcular(int a, int b, int op) throws RemoteException {
-		System.out.println("Método soma chamado " + chamadas++);
+		switch (op) {
+            case 1:  
+		chamadas++;
+		System.out.println("Metodo soma chamado \n");
+		System.out.println("Total de chamadas: "+chamadas);
 		return a + b;
+                     break;
+            case 2:  
+		chamadas++;
+		System.out.println("Metodo subtracao chamado \n");
+		System.out.println("Total de chamadas: "+chamadas);
+		return a - b;
+                     break;
+            case 3:  
+		chamadas++;
+		System.out.println("Metodo multiplicacao chamado \n");
+		System.out.println("Total de chamadas: "+chamadas);
+		return a * b;
+                     break;
+            case 4:  
+		chamadas++;
+		System.out.println("Metodo divisao chamado \n");
+		System.out.println("Total de chamadas: "+chamadas);
+		return a / b;
+                     break;
+	    default: System.out.println("Operacao invalida")
+		     break;
+		
 	}
 
 	public static void main(String[] args) throws AccessException, RemoteException, AlreadyBoundException  {
