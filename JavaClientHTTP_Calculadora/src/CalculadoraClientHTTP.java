@@ -31,38 +31,37 @@ public class CalculadoraClientHTTP {
       
     try {
 
-       URL url = new URL("https://double-nirvana-273602.appspot.com/?hl=pt-BR");
-       HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
-        conn.setReadTimeout(10000);
-        conn.setConnectTimeout(15000);
-        conn.setRequestMethod("POST");
-        conn.setDoInput(true);
-        conn.setDoOutput(true) ;
+       URL url = new URL("https://double-nirvana-273602.appspot.com/?hl=pt-BR"); //Endereço do servidor a se conectar
+       HttpsURLConnection conn = (HttpsURLConnection) url.openConnection(); // Tentativa de estabelecer conexão com o servidor informado
+        conn.setReadTimeout(10000); // Estabelece limite de espera para o recebimento de uma resposta do servidor
+        conn.setConnectTimeout(15000); // Limite de espera para o estabelecimento da conexão com o servidor
+        conn.setRequestMethod("POST"); // Determina o tipo de requisição que será feito ao servidor
+        conn.setDoInput(true); // Determina que a conexão poderá ser utilizada para receber dados do servidor
+        conn.setDoOutput(true) ; // Determina que a conexão poderá ser utilizada para enviar dados ao servidor
 
         //ENVIO DOS PARAMETROS
-        OutputStream os = conn.getOutputStream();
-        BufferedWriter writer = new BufferedWriter(
-                new OutputStreamWriter(os, "UTF-8"));
-        writer.write("oper1="+a+"&oper2="+b+"&operacao="+op); //1-somar 2-subtrair 3-dividir 4-multiplicar
-        writer.flush();
-        writer.close();
-        os.close();
+        OutputStream os = conn.getOutputStream(); // Canal para envio de dados ao servidor
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8")); // Objeto que traduz a mensagem para ser enviada ao servidor. São determiandos o canal de envio e o tipo de mensagem a ser traduzida, no caso caracteres no padrão UTF-8.
+        writer.write("oper1="+a+"&oper2="+b+"&operacao="+op); //1-somar 2-subtrair 3-dividir 4-multiplicar //Mensagem a ser enviada ao servidor.
+        writer.flush(); // É feito o envio da mensagem
+        writer.close(); // É fechado o processo de escrita e tradução de mensagens
+        os.close(); // É fechado o canal de envio para os ervidor
 
-        int responseCode=conn.getResponseCode();
-        if (responseCode == HttpsURLConnection.HTTP_OK) {
+        int responseCode=conn.getResponseCode(); // Recebe o código de resposta do servidor para a mensagem enviada
+        if (responseCode == HttpsURLConnection.HTTP_OK) { // Se houver confirmação do recebimento da mensagem e que há conexão com o servidor
 
             //RECBIMENTO DOS PARAMETROS
 
 
             BufferedReader br = new BufferedReader(
-                    new InputStreamReader(conn.getInputStream(), "utf-8"));
-            StringBuilder response = new StringBuilder();
-            String responseLine = null;
-            while ((responseLine = br.readLine()) != null) {
-                response.append(responseLine.trim());
+                    new InputStreamReader(conn.getInputStream(), "utf-8")); // Objeto que traduz a mensagem recebida do servidor
+            StringBuilder response = new StringBuilder(); // String a ser construída com os caractéres não nulos enviados pelo servidor
+            String responseLine = null;  // Variável usada para guardar cada caractere enviado pelo servidor
+            while ((responseLine = br.readLine()) != null) { //Percorre a mensagem do servidor caractere por caractere
+                response.append(responseLine.trim()); //Os caracteres não nulos são aglutinados na variável response
             }
-            result = response.toString();
-            System.out.println("Resposta do Servidor PHP="+result);
+            result = response.toString(); // Cria uma string com os caracteres armazenados
+            System.out.println("Resposta do Servidor PHP="+result); // É impressa a mensagem traduzida do servidor
         }
     } catch (IOException e) {
         e.printStackTrace();
