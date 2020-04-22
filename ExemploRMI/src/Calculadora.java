@@ -12,7 +12,7 @@ public class Calculadora  implements ICalculadora {
 	
 	private static int chamadas = 0;
 
-	public int soma(int a, int b) throws RemoteException {
+	public int calcular(int a, int b, int op) throws RemoteException {
 		System.out.println("Método soma chamado " + chamadas++);
 		return a + b;
 	}
