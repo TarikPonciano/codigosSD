@@ -12,37 +12,37 @@ public class CalculadoraServerSocket {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-	    ServerSocket welcomeSocket;
-	    DataOutputStream socketOutput;     	
-	    DataInputStream socketInput;
-	    BufferedReader socketEntrada;
+	    ServerSocket welcomeSocket; // Criação do Servidor Socket
+	    DataOutputStream socketOutput; // Canal para envio de dados    	
+	    DataInputStream socketInput; // Canal para recebimento de dados 
+	    BufferedReader socketEntrada; // Tradução e tratamento de dados recebidos
 	    Calculadora calc = new Calculadora();
 		try {
-			welcomeSocket = new ServerSocket(9090);
+			welcomeSocket = new ServerSocket(9090); // Porta através da qual o servidor irá se comunicar
 		  int i=0; //número de clientes
 	  
 	      System.out.println ("Servidor no ar");
 	      while(true) { 
 	  
-	           Socket connectionSocket = welcomeSocket.accept(); 
-	           i++;
+	           Socket connectionSocket = welcomeSocket.accept(); // Verifica se um cliente se conectou
+	           i++; // Incrementa o número de clientes
 	           System.out.println ("Nova conexão");
 	           
 	           //Interpretando dados do servidor
-	       socketEntrada = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
-               String operacao= socketEntrada.readLine();
-               String oper1=socketEntrada.readLine();
-               String oper2=socketEntrada.readLine();
+	       socketEntrada = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream())); // Recebe e trata dados enviado pelo cliente
+               String operacao= socketEntrada.readLine(); // Recebe como string bytes enviado pelo cliente
+               String oper1=socketEntrada.readLine(); // Recebe como string bytes enviado pelo cliente
+               String oper2=socketEntrada.readLine(); // Recebe como string bytes enviado pelo cliente
                
                //Chamando a calculadora
-               String result= ""+calc.calcular(Double.parseDouble(oper1),Double.parseDouble(oper2),Integer.parseInt(operacao));
+               String result= ""+calc.calcular(Double.parseDouble(oper1),Double.parseDouble(oper2),Integer.parseInt(operacao)); // Chama o método calcular e passa como argumento os parametros passados pelo cliente e retorna o resultado como uma mensagem.
                
                //Enviando dados para o servidor
-               socketOutput= new DataOutputStream(connectionSocket.getOutputStream());     	
-	           socketOutput.writeBytes(result+ '\n');
+               socketOutput= new DataOutputStream(connectionSocket.getOutputStream()); // Canal de envio de dados é aberto	
+	           socketOutput.writeBytes(result+ '\n'); // Prepara a String armazenada na variável result para envio como mensagem.
 	           System.out.println (result);	           
-	           socketOutput.flush();
-	           socketOutput.close();
+	           socketOutput.flush(); // Mensagem é enviada aos clientes
+	           socketOutput.close(); // O canal de envio de dados é fechado
 
 	                    
 	      }
