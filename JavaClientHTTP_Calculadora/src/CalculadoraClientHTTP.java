@@ -8,6 +8,8 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import java.util.Scanner;
+
 public class CalculadoraClientHTTP {
 
 	public static void main(String[] args) {
